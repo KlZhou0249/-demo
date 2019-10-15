@@ -121,8 +121,8 @@
                     createrow();
                 }
 
-                // 添加ontouchstart事件
-                $('#main').on('touchstart', function(e){
+                // 添加onclick事件
+                $('#main').click(function(e){
                     e = e || event;
                     judge(e);
                 })
@@ -206,7 +206,7 @@
                             'red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple'];
             var speed = 4;
             var clock = null;
-            $('.start').on('touchend', function(){
+            $('.start').click(function(){
                 init();
                 $(this).hide();
             });    

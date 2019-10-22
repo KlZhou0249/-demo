@@ -176,7 +176,7 @@
             }
 
             function speedup(){
-                if(speed <= 16){
+                if(speed <= 12){
                     speed += 2;
                 }
                 else{
@@ -215,7 +215,7 @@
             function changecolor(nowscore){
                 var style = document.createElement('style');
                 style.type = 'text/css';
-                style.innerHTML = ".black{background-color:" + colorset[Math.floor(nowscore/10)] + "}";
+                style.innerHTML = ".black{background-color:" + colorset[Math.floor(nowscore/10)||10] + "}";
                 $('head').append(style);
             }
 
@@ -229,6 +229,7 @@
             $('.start').click(function(){
                 // 启动音乐
                 var bgmusic = document.getElementById('bgmusic');
+
                 bgmusic.play();
                 $(this).text('游戏三秒后开始...');
                 setTimeout(()=>{init(), $(this).text('加油点黑块！')}, 3000);

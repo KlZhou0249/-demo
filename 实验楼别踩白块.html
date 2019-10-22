@@ -4,6 +4,7 @@
         <meta charset='utf-8'>
         <title>别踩白块简化版</title>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <meta name='viewport' content='width=device-width, intial-scale=1.0'>
         <style>
             #score{
                 text-align: center;
@@ -116,16 +117,20 @@
                 }
             }
 
+            function eventOn(e){
+                e = e||event;
+                e.preventDefault();
+                judge(e);
+            }
+
             function init(){
                 for(var i = 0; i < 4; i ++){
                     createrow();
                 }
 
                 // 添加onclick事件
-                $('#main').click(function(e){
-                    e = e || event;
-                    judge(e);
-                })
+                $('#main').click(eventOn);
+                $('#main').get(0).addEventListener('touchstart', eventOn);
 
 
                 // 设置定时器, 每30ms调用一次move

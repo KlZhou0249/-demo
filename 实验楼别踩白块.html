@@ -79,6 +79,8 @@
                 点击开始游戏进入游戏，鼠标点击消除黑块，黑块落到最下面则游戏失败！
             </p>
         </div>
+
+        <audio id='bgmusic' src='http://music.163.com/song/media/outer/url?id=33035711.mp3' preload='auto' loop></audio>
         <script>
             // 创建div，并设置classname
             function creatediv(className){
@@ -127,7 +129,7 @@
                 for(var i = 0; i < 4; i ++){
                     createrow();
                 }
-
+                
                 // 添加onclick事件
                 $('#main').click(eventOn);
                 $('#main').get(0).addEventListener('touchstart', eventOn);
@@ -175,9 +177,6 @@
 
             function speedup(){
                 speed += 2;
-                if(speed == 20){
-                    alert('你无敌了');
-                }
             }
 
             function score(){
@@ -190,12 +189,20 @@
             }
 
             function fail(){
-                // 重新显示start，暂停计时器，并移去所有row
+                // 失败则一切初始化
                 $('.start').show();
                 clearInterval(clock);
                 $('.row').remove();
+                bgmusic.load();
                 alert('Your final score is: ' + $('#score').text() + ' !');
+                if(speed >= 30){
+                    alert('你太猛了！');
+                }
                 $('#score').text('0');
+                speed = initial_speed;
+                $('#score').text('0');
+                changecolor(0);
+                $('.start').text('开始游戏');
             }
 
             // 每隔10分变换颜色
@@ -210,12 +217,17 @@
             // 用来变换颜色的集合
             var colorset = ['#000', '#222','#444', '#555',
                             'red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple'];
-            var speed = 4;
+            // 速度初始值
+            var initial_speed = 4;
+            var speed = initial_speed;
             var clock = null;
             $('.start').click(function(){
-                init();
-                $(this).hide();
-            });    
+                // 启动音乐
+                var bgmusic = document.getElementById('bgmusic');
+                bgmusic.play();
+                $(this).text('游戏三秒后开始...');
+                setTimeout(()=>{init(), $(this).text('加油点黑块！')}, 3000);
+            });
         </script>
     </body>
 </html>

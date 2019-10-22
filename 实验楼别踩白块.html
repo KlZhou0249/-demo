@@ -215,7 +215,7 @@
             function changecolor(nowscore){
                 var style = document.createElement('style');
                 style.type = 'text/css';
-                style.innerHTML = ".black{background-color:" + colorset[Math.floor(nowscore/10)||10] + "}";
+                style.innerHTML = ".black{background-color:" + colorset[Math.floor(nowscore/10)]||'purple' + "}";
                 $('head').append(style);
             }
 

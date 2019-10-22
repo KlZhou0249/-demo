@@ -229,8 +229,9 @@
             $('.start').click(function(){
                 // 启动音乐
                 var bgmusic = document.getElementById('bgmusic');
-
-                bgmusic.play();
+                if(confirm('是否播放音乐？')){
+                    bgmusic.play();
+                }
                 $(this).text('游戏三秒后开始...');
                 setTimeout(()=>{init(), $(this).text('加油点黑块！')}, 3000);
             });

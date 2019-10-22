@@ -176,7 +176,12 @@
             }
 
             function speedup(){
-                speed += 2;
+                if(speed <= 16){
+                    speed += 2;
+                }
+                else{
+                    speed += 1;
+                }
             }
 
             function score(){
